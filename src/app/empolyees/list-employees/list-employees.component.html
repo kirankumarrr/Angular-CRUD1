@@ -1,0 +1,64 @@
+<div class="form-group">
+    <input type="text" name="searchTerm" [(ngModel)]="searchTerm" placeholder="Enter to Search" />
+</div>
+<div *ngFor="let employee of filteredEmployees">
+		<app-display-employees [employee]="employee" [searchTerm]="searchTerm" (notifyDeleteEmployee)="deleteEmployeeMethod($event)"></app-display-employees>
+</div>
+<div *ngIf="filteredEmployeeNotFound && searchTerm!==''">
+    Employee Not Found
+</div>
+
+<!-- Other way
+<div *ngFor="let employee of filteredEmployees">
+		<app-display-employees [employee]="employee" 
+    (ViewParentEmployeeEvent)="onclickNavigate($event)"></app-display-employees>
+</div>
+
+ -->
+
+<!-- 
+<div *ngFor="let employee of filteredEmployees">
+	<div (click)="onclickNavigate(employee.id)" class="employeecursor">
+		<app-display-employees [employee]="employee" #childComponent></app-display-employees>
+	</div>
+</div>
+
+
+ -->
+
+<!-- No Longer Filtering with PIPES 
+<div *ngFor="let employee of employees | employeeFilter:SearchTerm">
+	<div (click)="onclickNavigate(employee.id)" class="employeecursor">
+		<app-display-employees [employee]="employee" #childComponent></app-display-employees>
+	</div>
+</div>
+
+-->
+
+<!-- This is using template reference variabletemplate reference variable -->
+<!--
+  <h1 #ParentH1>{{name}}</h1>
+   <div *ngFor="let employee of employees">
+	<div (click)="ParentH1.innerHTML=childComponent.employee.name+' '+ childComponent.employee.gender">
+		<app-display-employees [employee]="employee" #childComponent></app-display-employees>
+	</div>
+</div> -->
+<!--  -->
+
+<!-- This is using template reference variabletemplate reference variable method
+<div *ngFor="let employee of employees">
+	<div (click)="ParentH1.innerHTML=childComponent.getNameAndGender()">
+		<app-display-employees [employee]="employee" #childComponent></app-display-employees>
+	</div>
+</div>
+
+
+ -->
+
+<!-- 	<app-display-employees [employee]="employee" (notify)="notify($event)" #childComponent></app-display-employees> -->
+
+<!-- <button class="btn btn-primary" (click)=nextEmployeeToDisplay()>
+    Show Next Employeee
+</button>
+<br><br>
+<app-display-employees [employee]="employeeToDisplay"></app-display-employees> -->

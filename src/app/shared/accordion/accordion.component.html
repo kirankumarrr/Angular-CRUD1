@@ -1,0 +1,11 @@
+<div class="panel panel-primary" [class.panel-success]="isVisited">
+	<div class="panel-heading pointer" (click)="ishidden=!ishidden">
+		<h3 class="panel-title">{{title | uppercase}}</h3>  
+	</div>
+	<div class="panel-body" [hidden]="ishidden"> 
+		<ng-content select=".myPanelBody"></ng-content>
+	</div>
+	<div class="panel-footer" [hidden]="ishidden"> 
+		<ng-content select=".myPanelFooter"></ng-content>
+	</div>
+</div>
